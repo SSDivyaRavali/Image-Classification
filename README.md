@@ -29,6 +29,7 @@ Computed tomography (CT) scans are widely used to diagnose lung conditions due t
 📁 data/ → Raw and processed data
 📁 docs/ → Content,Images 
 📁 examples/ → Minimal scripts to test key features
+📁 artifacts/ → data downloaded
 📁 models/ → Saved models
 📁 notebooks/ → Quick experiments and prototyping
 📁 templates/ → UI template
@@ -135,6 +136,9 @@ Computed tomography (CT) scans are widely used to diagnose lung conditions due t
    Store exploratory analysis and experiments in the `notebooks/` directory.
 ---
 
+## Installation issues
+- AttributeError: 'MessageFactory' object has no attribute 'GetPrototype'
+Reinstall tensorflow protobuf
 
 ## 📁 Core Files
 

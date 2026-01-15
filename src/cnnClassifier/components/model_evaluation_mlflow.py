@@ -1,3 +1,4 @@
+import dagshub
 import tensorflow as tf
 from pathlib import Path
 import mlflow
@@ -55,9 +56,12 @@ class Evaluation:
     
     def log_into_mlflow(self):
         mlflow.set_registry_uri(self.config.mlflow_uri)
+        dagshub.init(repo_owner=self.config.mlflow_username, repo_name='Image-Classification', mlflow=True)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-        
+        mlflow.tensorflow.autolog()
         with mlflow.start_run():
+            with dagshub.dagshub_logger() as logger:
+                logger.log_metrics({"loss": self.score[0], "accuracy": self.score[1]})
             mlflow.log_params(self.config.all_params)
             mlflow.log_metrics(
                 {"loss": self.score[0], "accuracy": self.score[1]}
@@ -72,3 +76,4 @@ class Evaluation:
                 mlflow.keras.log_model(self.model, "model", registered_model_name="VGG16Model")
             else:
                 mlflow.keras.log_model(self.model, "model")
+        mlflow.end_run()

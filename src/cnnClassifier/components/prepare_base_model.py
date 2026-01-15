@@ -67,12 +67,7 @@ class PrepareBaseModel:
             freeze_till=None,
             learning_rate=self.config.params_learning_rate
         )
-        # check if updated model exists, then don't save again
-        if os.path.exists(self.config.updated_base_model_path):
-            print("Updated base model already exists. Skipping saving updated model.")
-            return
-        else:
-            self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
+        self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
     
 
 

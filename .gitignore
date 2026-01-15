@@ -127,7 +127,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-.vscode/
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -162,3 +161,16 @@ cython_debug/
 artifacts/*
 .dvc/
 .dvc/tmp/*
+src/dist_info/
+src/editable_wheel/
+src/egg_info/
+
+#mlflow
+metrics.csv
+params.yml
+mlruns/
+*.db
+*.sqlite
+# Visual Studio Code
+.vscode/
+.history/
