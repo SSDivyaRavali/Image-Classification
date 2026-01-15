@@ -67,57 +67,65 @@ Computed tomography (CT) scans are widely used to diagnose lung conditions due t
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
-   cd project_dir
+   $ git clone <repo-url>
+   $ cd project_dir
    ```
 2. **Create and activate virtual environment** 
 
    ```bash
-   python3 -m venv dvc-venv
-   echo "export PYTHONPATH=$PWD" >> dvc-venv/bin/activate
-   source dvc-venv/bin/activate
+   $ python3 -m venv dvc-venv
+   $ echo "export PYTHONPATH=$PWD" >> dvc-venv/bin/activate
+   $ source dvc-venv/bin/activate
    ```
    Using Conda :
    ```bash
-   conda create -n dvc-venv python=3.12 -y
-   conda dvc-venv activate
+   $ conda create -n dvc-venv python=3.12 -y
+   $ conda dvc-venv activate
    ```
 
 3. **Install dependencies**
    ```bash
-   pip install --upgrade pip setuptools wheel
-   pip install -r requirements.txt
+   $ pip install --upgrade pip setuptools wheel
+   $ pip install -r requirements.txt
    ```
+   For MacOs
+   ```bash
+   $ pip install tensorflow tensorflow-macos tensorflow-metal
+   $ pip install torch torchvision torchaudio
+   $ pip install jax-metal ml_dtypes==0.2.0 jax==0.4.26 jaxlib==0.4.26
+
+   ``` 
+
    Add Virtual Environment to Jupyter Notebook
 
    ```bash
-   python -m ipykernel install --user --name=dvc-venv
+   $ python -m ipykernel install --user --name=dvc-venv
    ``` 
 
    Configure ToC for jupyter notebook (optional)
 
    ```bash
-   jupyter contrib nbextension install --user
-   jupyter nbextension enable toc2/main
-   jupyter notebook #run notebook
+   $ jupyter contrib nbextension install --user
+   $ jupyter nbextension enable toc2/main
+   $ jupyter notebook #run notebook
    ```
 
 4. **Install DVC**
    ```sh
-   pip install dvc
+   $ pip install dvc
    ```
 
 5. **Initialize DVC (if not already initialized)**
    ```sh
-   dvc init
+   $ dvc init
    ```
 
 6. **Add your data**
    Place your raw data in the `data/` directory and track it with DVC:
    ```sh
-   dvc add data/<your-data-file>
-   git add data/<your-data-file>.dvc .gitignore
-   git commit -m "Add raw data"
+   $ dvc add data/<your-data-file>
+   $ git add data/<your-data-file>.dvc .gitignore
+   $ git commit -m "Add raw data"
    ```
 
 7. **Run the pipeline**

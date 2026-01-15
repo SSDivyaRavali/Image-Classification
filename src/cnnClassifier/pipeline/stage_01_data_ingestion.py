@@ -1,7 +1,7 @@
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.data_ingestion import DataIngestion
 from cnnClassifier import logger
-
+import os
 
 
 STAGE_NAME = "Data Ingestion stage"
@@ -16,9 +16,11 @@ class DataIngestionTrainingPipeline:
         data_ingestion = DataIngestion(config=data_ingestion_config)
         if os.path.exists(data_ingestion_config.local_data_file) == False:
             data_ingestion.download_file()
+            data_ingestion.extract_zip_file()
         else:
-            logger.info("Data already downloaded")
-        data_ingestion.extract_zip_file()
+            logger.info("Data already downloaded and extracted. Skipping data ingestion stage.")
+            
+        
 
 
 

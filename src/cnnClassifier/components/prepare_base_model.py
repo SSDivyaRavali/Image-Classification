@@ -20,8 +20,12 @@ class PrepareBaseModel:
             weights=self.config.params_weights,
             include_top=self.config.params_include_top
         )
-
-        self.save_model(path=self.config.base_model_path, model=self.model)
+        # if model exists, then don't download again
+        if os.path.exists(self.config.base_model_path):
+            print("Base model already exists. Skipping dowload.")
+            return
+        else:
+            self.save_model(path=self.config.base_model_path, model=self.model)
 
 
     
@@ -63,8 +67,12 @@ class PrepareBaseModel:
             freeze_till=None,
             learning_rate=self.config.params_learning_rate
         )
-
-        self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
+        # check if updated model exists, then don't save again
+        if os.path.exists(self.config.updated_base_model_path):
+            print("Updated base model already exists. Skipping saving updated model.")
+            return
+        else:
+            self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
     
 
 

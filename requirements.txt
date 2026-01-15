@@ -1,4 +1,4 @@
-tensorflow
+# tensorflow for mac follow instructions 
 pandas 
 gdown
 dvc
